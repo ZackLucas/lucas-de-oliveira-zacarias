@@ -2,11 +2,11 @@
   "name": "lucas-de-oliveira-zacarias",
   "version": "1.0.0",
   "description": "<h1>Backend Analyst Candidate Test</h1> Dear developer,",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon --exec sucrase-node src/index.js",
-    "start": "node src/index.js",
+    "start:dev": "nodemon src/server.js",
+    "start": "node src/server.js",
     "lint:fix": "eslint --fix --ext .js src/"
   },
   "type": "module",
@@ -16,7 +16,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "helmet": "^7.0.0"
+    "helmet": "^7.0.0",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.3.4"
   },
   "devDependencies": {
     "eslint": "^8.45.0",
