@@ -1,0 +1,31 @@
+{
+  "name": "lucas-de-oliveira-zacarias",
+  "version": "1.0.0",
+  "description": "<h1>Backend Analyst Candidate Test</h1> Dear developer,",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon --exec sucrase-node src/index.js",
+    "start": "node src/index.js",
+    "lint:fix": "eslint --fix --ext .js src/"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.6.1",
+    "prettier": "^3.0.0",
+    "sucrase": "^3.33.0"
+  }
+}
