@@ -3,7 +3,8 @@ import createCategories from '../data/use-case/create-categories.js'
 export default class CategoriesController {
   async createCategories(req, res) {
     try {
-      const { title, owner, description } = req.body
+      const { title, description } = req.body
+      const { owner } = req.params
       const useCase = new createCategories()
 
       const response = await useCase.execute(title, owner, description)
