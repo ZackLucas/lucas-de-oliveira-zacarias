@@ -1,16 +1,16 @@
 import express from 'express'
 import 'dotenv/config'
 
-import healthcheckRoutes from './healthcheck/protocols/routes.js'
+import routes from './core/protocols/configure.routes.js'
 
-import { configureApp } from './server.js'
+import { configureApp } from './app.js'
 
 async function server() {
   const app = express()
 
-  app.use(configureApp())
+  app.use(await configureApp())
 
-  app.use('/healthcheck', healthcheckRoutes)
+  app.use('/v1', routes)
 
   app.listen(process.env.APP_SERVER_PORT, () => {
     console.log(`Server run: localhost:${process.env.APP_SERVER_PORT}/`)

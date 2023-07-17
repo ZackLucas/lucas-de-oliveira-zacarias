@@ -1,9 +1,10 @@
+import mongoose from 'mongoose'
 import express from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
 import { json, urlencoded } from 'express'
 
-export const configureApp = () => {
+export const configureApp = async () => {
   const app = express.Router()
 
   // Config
@@ -11,6 +12,12 @@ export const configureApp = () => {
   app.use(helmet())
   app.use(json({ limit: '2mb' }))
   app.use(urlencoded({ extended: true, limit: '2mb' }))
+
+  // Mongoose Config
+  const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DATABASE_NAME } = process.env
+  const uri = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_URL}/${MONGODB_DATABASE_NAME}`
+
+  mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
   return app
 }
