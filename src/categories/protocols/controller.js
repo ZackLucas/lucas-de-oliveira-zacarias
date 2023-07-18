@@ -1,4 +1,5 @@
 import { CreateCategories, UpdateCategories, DeleteCategories } from '../data/index.js'
+import { SendCatalogMessage } from '../../core/data/index.js'
 
 export default class CategoriesController {
   async createCategories(req, res) {
@@ -8,6 +9,9 @@ export default class CategoriesController {
       const useCase = new CreateCategories()
 
       const response = await useCase.execute(ownerId, title, description)
+
+      const result = await new SendCatalogMessage().execute(ownerId)
+      console.log(result)
 
       return res.json({ data: response })
     } catch (error) {
