@@ -8,11 +8,11 @@ export class CreateCategories {
     this.validateEntries(title, ownerId)
 
     const categoriesDatabase = new CategoriesDatabase()
-    const user = await categoriesDatabase.create(title, ownerId, description)
+    const category = await categoriesDatabase.create(title, ownerId, description)
 
-    if (!user) throw new BadRequestError(null, 'category not registered.')
+    if (!category) throw new BadRequestError(null, 'category not registered.')
 
-    return user
+    return category
   }
 
   validateEntries(title, ownerId) {

@@ -4,17 +4,17 @@ import { Categories } from '../../infra/index.js'
 import { ObjectId } from 'mongodb'
 
 export class CategoriesMock {
-  constructor() {
+  constructor(ownerId) {
     const category = this.generate()
 
     this._id = category._id
-    this.ownerId = category.ownerId
+    this.ownerId = ownerId || category.ownerId
     this.title = category.title
     this.description = category.description
   }
 
-  static create() {
-    return new CategoriesMock()
+  static create(ownerId) {
+    return new CategoriesMock(ownerId)
   }
 
   get category() {
