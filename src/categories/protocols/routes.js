@@ -4,6 +4,8 @@ import CategoriesController from './controller.js'
 const routes = express.Router()
 const controller = new CategoriesController()
 
-routes.post('/:owner', controller.createCategories)
+routes.post('/:ownerId', controller.createCategories)
+routes.put('/:ownerId/:categoryId', controller.updateCategories)
+routes.delete('/:ownerId/:categoryId', controller.deleteCategories)
 
 export default routes
