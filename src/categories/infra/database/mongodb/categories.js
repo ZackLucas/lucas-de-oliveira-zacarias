@@ -1,7 +1,7 @@
 import { BadRequestError } from '../../../../core/domain/errors/bad-request-error.js'
-import Categories from './models/categories.model.js'
+import { Categories } from './models/categories.model.js'
 
-export default class CategoriesDatabase {
+export class CategoriesDatabase {
   async create(title, ownerId, description) {
     try {
       const user = await Categories.create({ title, ownerId, description })

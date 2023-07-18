@@ -1,4 +1,4 @@
-import CategoriesDatabase from '../../infra/database/mongodb/categories.js'
+import { CategoriesDatabase } from '../../infra/index.js'
 
 import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
 

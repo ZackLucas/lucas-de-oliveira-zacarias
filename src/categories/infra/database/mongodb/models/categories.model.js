@@ -16,6 +16,4 @@ const categoriesSchema = new Schema(
 
 categoriesSchema.index({ title: 1, ownerId: 1 }, { unique: true })
 
-const Categories = mongoose.model('Categories', categoriesSchema)
-
-export default Categories
+export const Categories = mongoose.model('Categories', categoriesSchema)

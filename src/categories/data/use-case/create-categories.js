@@ -1,10 +1,10 @@
-import CategoriesDatabase from '../../infra/database/mongodb/categories.js'
+import { CategoriesDatabase } from '../../infra/index.js'
 
 import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
 import { ValidationError } from '../../../core/domain/errors/validation.error.js'
 
 export class CreateCategories {
-  async execute(title, ownerId, description) {
+  async execute(ownerId, title, description) {
     this.validateEntries(title, ownerId)
 
     const categoriesDatabase = new CategoriesDatabase()
