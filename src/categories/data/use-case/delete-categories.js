@@ -8,10 +8,10 @@ export class DeleteCategories {
 
     // TODO adicionar validação se algum produto utiliza essa categoria antes da deleção
 
-    const { modifiedCount } = await categoriesDatabase.delete(ownerId, categoryId)
+    const { deletedCount } = await categoriesDatabase.delete(ownerId, categoryId)
 
-    if (modifiedCount === 0) throw new BadRequestError(null, 'Category not deleted.')
+    if (deletedCount === 0) throw new BadRequestError(null, 'Category not deleted.')
 
-    return { modifiedCount }
+    return { deletedCount }
   }
 }

@@ -10,7 +10,7 @@ export class CreateCategories {
     const categoriesDatabase = new CategoriesDatabase()
     const user = await categoriesDatabase.create(title, ownerId, description)
 
-    if (!user) throw new BadRequestError(null, 'unexpected error.')
+    if (!user) throw new BadRequestError(null, 'category not registered.')
 
     return user
   }

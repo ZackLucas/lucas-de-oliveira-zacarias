@@ -30,4 +30,5 @@ afterEach(async () => {
       await collection.deleteMany()
     }
   }
+  jest.clearAllMocks()
 })

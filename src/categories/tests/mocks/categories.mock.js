@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 
 import { Categories } from '../../infra/index.js'
+import { ObjectId } from 'mongodb'
 
 export class CategoriesMock {
   constructor() {
@@ -22,14 +23,14 @@ export class CategoriesMock {
 
   generate() {
     return {
-      _id: faker.string.uuid(),
-      ownerId: faker.string.uuid(),
+      _id: new ObjectId(),
+      ownerId: new ObjectId(),
       title: faker.commerce.productName(),
       description: faker.lorem.sentence(),
     }
   }
 
-  async persist(ownerId) {
+  async persist(ownerId = this.ownerId) {
     const { title, description } = this
     return await Categories.create({ ownerId, title, description })
   }
