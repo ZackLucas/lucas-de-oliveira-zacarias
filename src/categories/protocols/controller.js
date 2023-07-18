@@ -7,7 +7,7 @@ export default class CategoriesController {
       const { ownerId } = req.params
       const useCase = new CreateCategories()
 
-      const response = await useCase.execute(title, ownerId, description)
+      const response = await useCase.execute(ownerId, title, description)
 
       return res.json({ data: response })
     } catch (error) {
