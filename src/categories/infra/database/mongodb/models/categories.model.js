@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const categoriesSchema = new Schema(
   {
     title: { type: String, required: true },
-    owner: { type: String, required: true },
+    ownerId: { type: String, required: true },
     description: String,
   },
   {
@@ -14,7 +14,7 @@ const categoriesSchema = new Schema(
   },
 )
 
-categoriesSchema.index({ title: 1, owner: 1 }, { unique: true })
+categoriesSchema.index({ title: 1, ownerId: 1 }, { unique: true })
 
 const Categories = mongoose.model('Categories', categoriesSchema)
 
