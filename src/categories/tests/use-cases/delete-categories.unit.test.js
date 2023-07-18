@@ -7,7 +7,7 @@ import { BadRequestError } from '../../../core/domain/errors/bad-request-error.j
 import { CategoriesDatabase } from '../../infra/index.js'
 
 describe('Use Cases -> Delete Categories', () => {
-  it('Should be able delete category and return data', async () => {
+  it('Should be able delete category', async () => {
     const categoriesMock = await CategoriesMock.create().persist()
 
     const deleteCategories = new DeleteCategories()
