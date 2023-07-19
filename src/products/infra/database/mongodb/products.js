@@ -78,18 +78,14 @@ export class ProductsDatabase {
         },
       },
       {
-        $project: {
-          _id: '$ownerId',
-          category_title: 1,
-          category_description: 1,
-          itens: 1,
-        },
-      },
-      {
         $group: {
-          _id: '$_id',
+          _id: '$ownerId',
           catalog: {
-            $push: '$$ROOT',
+            $push: {
+              category_title: '$category_title',
+              category_description: '$category_description',
+              itens: '$itens',
+            },
           },
         },
       },

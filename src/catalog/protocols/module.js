@@ -7,9 +7,8 @@ export class CatalogModule {
   static async initialize() {
     const receiverCatalog = new ReceiveCatalogMessage()
 
-    return schedule('*/5 * * * * *', async () => {
+    return schedule('*/10 * * * * *', async () => {
       const result = await receiverCatalog.execute()
-      console.log(result)
 
       if (!result.Messages) return
 
