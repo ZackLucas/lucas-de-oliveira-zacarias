@@ -4,8 +4,15 @@ export class SendCatalogMessage {
   constructor() {}
 
   async execute(ownerId) {
-    const sqsServiceAWS = new SQSServiceAWS(process.env.AWS_QUEUE_URL)
+    try {
+      const sqsServiceAWS = new SQSServiceAWS(process.env.AWS_QUEUE_URL)
 
-    return sqsServiceAWS.sendRequest(JSON.stringify({ ownerId }), 'catalog')
+      const result = await sqsServiceAWS.sendRequest(JSON.stringify({ ownerId }))
+      console.log(result)
+
+      return result
+    } catch (error) {
+      console.error(error)
+    }
   }
 }

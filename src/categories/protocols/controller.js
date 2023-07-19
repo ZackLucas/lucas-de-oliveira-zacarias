@@ -10,8 +10,7 @@ export default class CategoriesController {
 
       const response = await useCase.execute(ownerId, title, description)
 
-      const result = await new SendCatalogMessage().execute(ownerId)
-      console.log(result)
+      await new SendCatalogMessage().execute(ownerId)
 
       return res.json({ data: response })
     } catch (error) {

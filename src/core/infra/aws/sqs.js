@@ -9,11 +9,35 @@ export class SQSServiceAWS {
     this.QueueUrl = QueueUrl
   }
 
-  async sendRequest(MessageBody, MessageGroupId) {
-    return this.sqs.sendMessage({ QueueUrl: this.QueueUrl, MessageBody, MessageGroupId }).promise()
+  async sendRequest(MessageBody) {
+    return this.sqs.sendMessage({ QueueUrl: this.QueueUrl, MessageBody }).promise()
   }
 
   async receiveMessage(params) {
-    return this.sqs.receiveMessage({ QueueUrl: this.QueueUrl, ...params }).promise()
+    try {
+      const response = await this.sqs.receiveMessage({ QueueUrl: this.QueueUrl, ...params }).promise()
+
+      if (response.Messages) {
+        response.Messages.forEach(({ ReceiptHandle }) => {
+          this.sqs.deleteMessage(
+            {
+              QueueUrl: this.QueueUrl,
+              ReceiptHandle,
+            },
+            (error) => {
+              if (error) {
+                console.error(error)
+              } else {
+                console.log('Deletado com sucesso')
+              }
+            },
+          )
+        })
+      }
+
+      return response
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
