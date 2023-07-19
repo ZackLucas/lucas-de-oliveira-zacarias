@@ -4,6 +4,8 @@ import helmet from 'helmet'
 import cors from 'cors'
 import { json, urlencoded } from 'express'
 
+import { CatalogModule } from './catalog/protocols/module.js'
+
 export const configureApp = async () => {
   const app = express.Router()
 
@@ -18,6 +20,9 @@ export const configureApp = async () => {
   const uri = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_URL}/${MONGODB_DATABASE_NAME}`
 
   mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+
+  // Catalog module initialize
+  await CatalogModule.initialize()
 
   return app
 }

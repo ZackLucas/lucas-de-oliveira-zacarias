@@ -1,5 +1,7 @@
 import { CreateProducts, UpdateProducts, DeleteProducts } from '../data/index.js'
 
+import { SendCatalogMessage } from '../../core/data/index.js'
+
 export default class ProductsController {
   async createProducts(req, res) {
     try {
@@ -7,6 +9,8 @@ export default class ProductsController {
       const useCase = new CreateProducts()
 
       const response = await useCase.execute(ownerId, req.body)
+
+      await new SendCatalogMessage().execute(ownerId)
 
       return res.json({ data: response })
     } catch (error) {
@@ -24,6 +28,8 @@ export default class ProductsController {
 
       const response = await useCase.execute(ownerId, productId, req.body)
 
+      await new SendCatalogMessage().execute(ownerId)
+
       return res.json({ data: response })
     } catch (error) {
       const message = error.message || 'Error'
@@ -39,6 +45,8 @@ export default class ProductsController {
       const useCase = new DeleteProducts()
 
       const response = await useCase.execute(ownerId, productId)
+
+      await new SendCatalogMessage().execute(ownerId)
 
       return res.json({ data: response })
     } catch (error) {

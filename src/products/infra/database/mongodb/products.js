@@ -35,4 +35,64 @@ export class ProductsDatabase {
 
     return user
   }
+
+  async createCatalog(ownerId) {
+    return await Products.aggregate([
+      {
+        $match: {
+          ownerId,
+        },
+      },
+      {
+        $lookup: {
+          from: 'Categories',
+          localField: 'categoryId',
+          foreignField: '_id',
+          as: 'category',
+        },
+      },
+      {
+        $unwind: {
+          path: '$category',
+        },
+      },
+      {
+        $group: {
+          _id: '$category._id',
+          category_title: {
+            $first: '$category.title',
+          },
+          category_description: {
+            $first: '$category.description',
+          },
+          ownerId: {
+            $first: '$ownerId',
+          },
+          itens: {
+            $push: {
+              title: '$title',
+              description: '$description',
+              price: '$price',
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          _id: '$ownerId',
+          category_title: 1,
+          category_description: 1,
+          itens: 1,
+        },
+      },
+      {
+        $group: {
+          _id: '$_id',
+          catalog: {
+            $push: '$$ROOT',
+          },
+        },
+      },
+    ])
+  }
 }
