@@ -1,4 +1,5 @@
 import { ProductsDatabase } from '../../../products/infra/index.js'
+import { S3ServiceAWS } from '../../../core/infra/index.js'
 
 export class CreateCatalog {
   async execute(ownerId) {
@@ -6,10 +7,17 @@ export class CreateCatalog {
 
     const [{ _id, catalog }] = await productDatabase.createCatalog(ownerId)
 
-    this.sendCatalogToS3({ owner: _id, catalog })
+    await this.sendCatalogToS3({ owner: _id, catalog })
   }
 
-  sendCatalogToS3(catalog) {
-    console.log(catalog)
+  async sendCatalogToS3(catalog) {
+    const s3Service = new S3ServiceAWS()
+    const Bucket = process.env.AWS_BUCKET
+
+    const { owner } = catalog
+
+    const params = s3Service.jsonToS3(catalog, Bucket, `${owner}/catalog.json`)
+
+    await s3Service.uploadFile(params)
   }
 }
