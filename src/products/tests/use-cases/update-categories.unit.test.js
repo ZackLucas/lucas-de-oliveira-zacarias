@@ -1,12 +1,12 @@
+import { ObjectId } from 'mongodb'
+
 import { UpdateProducts } from '../../data/index.js'
 
-import { ProductsMock } from '../mocks/products.mock.js'
+import { ValidationError } from '../../../core/domain/index.js'
 import { CategoriesMock } from '../../../categories/tests/mocks/categories.mock.js'
 
-import { ValidationError } from '../../../core/domain/errors/validation.error.js'
-
 import { Products } from '../../infra/index.js'
-import { ObjectId } from 'mongodb'
+import { ProductsMock } from '../mocks/products.mock.js'
 
 describe('Use Cases -> Update Products', () => {
   it('Should be able update a products', async () => {

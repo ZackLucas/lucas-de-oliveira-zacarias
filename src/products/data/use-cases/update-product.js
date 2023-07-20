@@ -1,8 +1,10 @@
+import { ObjectId } from 'mongodb'
+
+import { BadRequestError, InvalidParamError, RequiredParamError } from '../../../core/domain/index.js'
+
 import { ProductsDatabase } from '../../infra/index.js'
 
-import { ObjectId } from 'mongodb'
 import { verifyCategory } from '../utils/verify-category.js'
-import { BadRequestError, InvalidParamError, RequiredParamError } from '../../../core/domain/index.js'
 
 export class UpdateProducts {
   async execute(ownerId, productId, payload) {

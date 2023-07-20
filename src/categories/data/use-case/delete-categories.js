@@ -1,4 +1,5 @@
 import { BadRequestError } from '../../../core/domain/index.js'
+
 import { CategoriesDatabase } from '../../infra/index.js'
 
 export class DeleteCategories {

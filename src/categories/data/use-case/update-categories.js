@@ -1,6 +1,6 @@
-import { CategoriesDatabase } from '../../infra/index.js'
-
 import { BadRequestError, ValidationError } from '../../../core/domain/index.js'
+
+import { CategoriesDatabase } from '../../infra/index.js'
 
 export class UpdateCategories {
   async execute(ownerId, categoryId, title, description) {

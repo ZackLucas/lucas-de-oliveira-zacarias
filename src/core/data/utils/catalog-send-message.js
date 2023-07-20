@@ -1,5 +1,5 @@
-import { logger } from '../../domain/index.js'
 import { SQSServiceAWS } from '../../infra/index.js'
+import { logger } from '../../domain/index.js'
 
 export class SendCatalogMessage {
   constructor() {}
