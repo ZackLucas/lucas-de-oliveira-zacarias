@@ -4,7 +4,11 @@ Aplication test
 
 ## OBS
 
-- For simplicity, the ownerId has not been defined, when using routes you must inform the ownerId in the route parameters as a string.
+- For simplicity, the owner doesn't need to be created, when using routes you must inform the ownerId in the route parameters as a string.
+
+  Example -> GET /v1/categories/Pizzaria-1/
+
+- If docker is used to launch the application, it will also use mongodb instantiated in docker. If you choose default startup, mongodb will be used on atlas clusters.
 
 ## Installation
 
