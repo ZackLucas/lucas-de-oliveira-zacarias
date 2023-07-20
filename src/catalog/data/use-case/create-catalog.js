@@ -5,18 +5,21 @@ export class CreateCatalog {
   async execute(ownerId) {
     const productDatabase = new ProductsDatabase()
 
-    const [{ _id, catalog }] = await productDatabase.createCatalog(ownerId)
+    const [response] = await productDatabase.createCatalog(ownerId)
 
-    await this.sendCatalogToS3({ owner: _id, catalog })
+    if (!response) return await this.sendCatalogToS3({ owner: ownerId, catalog: [] })
+
+    const { catalog } = response
+    await this.sendCatalogToS3({ owner: ownerId, catalog })
   }
 
-  async sendCatalogToS3(catalog) {
+  async sendCatalogToS3(payload) {
     const s3Service = new S3ServiceAWS()
     const Bucket = process.env.AWS_BUCKET
 
-    const { owner } = catalog
+    const { owner } = payload
 
-    const params = s3Service.jsonToS3(catalog, Bucket, `${owner}/catalog.json`)
+    const params = s3Service.jsonToS3(payload, Bucket, `${owner}/catalog.json`)
 
     await s3Service.uploadFile(params)
   }
