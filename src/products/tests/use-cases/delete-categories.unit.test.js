@@ -7,6 +7,7 @@ import { BadRequestError } from '../../../core/domain/errors/bad-request-error.j
 
 import { ProductsDatabase, Products } from '../../infra/index.js'
 import { ObjectId } from 'mongodb'
+import { ValidationError } from '../../../core/domain/errors/validation.error.js'
 
 describe('Use Cases -> Delete Products', () => {
   it('Should be able delete category', async () => {
@@ -32,6 +33,24 @@ describe('Use Cases -> Delete Products', () => {
     const { ownerId, _id } = productsMock.category
 
     await expect(deleteProducts.execute(ownerId, _id)).rejects.toThrow(BadRequestError)
+  })
+
+  it('Should not be able delete category - ownerId is required.', async () => {
+    const productsMock = CategoriesMock.create()
+
+    const deleteProducts = new DeleteProducts()
+    const { _id } = productsMock.category
+
+    await expect(deleteProducts.execute(null, _id)).rejects.toThrow(ValidationError)
+  })
+
+  it('Should not be able delete category - ownerId is required.', async () => {
+    const productsMock = CategoriesMock.create()
+
+    const deleteProducts = new DeleteProducts()
+    const { ownerId, _id } = productsMock.category
+
+    await expect(deleteProducts.execute(ownerId, 'test')).rejects.toThrow(ValidationError)
   })
 
   it('Should not be able delete category - unexpected error.', async () => {

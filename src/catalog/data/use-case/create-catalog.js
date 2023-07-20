@@ -5,7 +5,7 @@ export class CreateCatalog {
   async execute(ownerId) {
     const productDatabase = new ProductsDatabase()
 
-    const [response] = await productDatabase.createCatalog(ownerId)
+    const [response] = await productDatabase.findCatalogByOwnerId(ownerId)
 
     if (!response) return await this.sendCatalogToS3({ owner: ownerId, catalog: [] })
 

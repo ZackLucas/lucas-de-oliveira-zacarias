@@ -23,7 +23,7 @@ afterAll(async () => {
   }
 })
 
-afterEach(async () => {
+beforeEach(async () => {
   if (mongo) {
     const collections = await mongoose.connection.db.collections()
     for (let collection of collections) {

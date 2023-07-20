@@ -16,6 +16,4 @@ export class ReceiveCatalogMessage {
 
     return messageBody
   }
-
-  getOwner() {}
 }

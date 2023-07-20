@@ -74,6 +74,17 @@ describe('Use Cases -> Update Products', () => {
     await expect(updateProducts.execute(ownerId, 'test', { title, price })).rejects.toThrow(ValidationError)
   })
 
+  it('Should not be able update products - categoryId is not valid.', async () => {
+    const productMock = await ProductsMock.create().persist()
+
+    const updateProducts = new UpdateProducts()
+    const { ownerId, _id, title, price } = productMock
+
+    await expect(updateProducts.execute(ownerId, _id, { title, price, categoryId: 'test' })).rejects.toThrow(
+      ValidationError,
+    )
+  })
+
   it('Should not be able update products - No information has been updated.', async () => {
     const productMock = ProductsMock.create()
 

@@ -20,4 +20,11 @@ module.exports = {
   transform: {
     '\\.[jt]sx?$': 'babel-jest',
   },
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/.*/protocols',
+    '<rootDir>/src/.*/domain',
+    '<rootDir>/src/.*/index.js',
+    '<rootDir>/src/server.js',
+    '<rootDir>/src/app.js',
+  ],
 }
