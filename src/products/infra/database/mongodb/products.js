@@ -40,7 +40,7 @@ export class ProductsDatabase {
     return user
   }
 
-  async createCatalog(ownerId) {
+  async findCatalogByOwnerId(ownerId) {
     return await Products.aggregate([
       {
         $match: {

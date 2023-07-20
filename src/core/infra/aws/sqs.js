@@ -10,7 +10,7 @@ export class SQSServiceAWS {
   }
 
   async sendRequest(MessageBody) {
-    return this.sqs.sendMessage({ QueueUrl: this.QueueUrl, MessageBody }).promise()
+    return await this.sqs.sendMessage({ QueueUrl: this.QueueUrl, MessageBody }).promise()
   }
 
   async receiveMessage(params) {

@@ -24,6 +24,6 @@ export class CreateProducts {
     if (!title) throw new ValidationError(null, 'title is required.')
     if (!price) throw new ValidationError(null, 'price is required.')
 
-    if (categoryId && !ObjectId.isValid(categoryId)) throw new ValidationError(null, 'categoryId is not valid.')
+    if (!!categoryId && !ObjectId.isValid(categoryId)) throw new ValidationError(null, 'categoryId is not valid.')
   }
 }

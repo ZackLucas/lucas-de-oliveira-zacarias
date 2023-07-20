@@ -8,7 +8,6 @@ export class SendCatalogMessage {
       const sqsServiceAWS = new SQSServiceAWS(process.env.AWS_QUEUE_URL)
 
       const result = await sqsServiceAWS.sendRequest(JSON.stringify({ ownerId }))
-      console.log(result)
 
       return result
     } catch (error) {

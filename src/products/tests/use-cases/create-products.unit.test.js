@@ -54,15 +54,6 @@ describe('Use Cases -> Create Products', () => {
     await expect(createProducts.execute(ownerId, { title })).rejects.toThrow(ValidationError)
   })
 
-  it('Should not be able create product - categoryId is required', async () => {
-    const productMock = ProductsMock.create()
-
-    const createProducts = new CreateProducts()
-    const { ownerId, title, price } = productMock.product
-
-    await expect(createProducts.execute(ownerId, { title, price })).rejects.toThrow(ValidationError)
-  })
-
   it('Should not be able create product - categoryId is not valid.', async () => {
     const productMock = ProductsMock.create()
 

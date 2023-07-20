@@ -21,8 +21,7 @@ CategoriesSchema.pre('deleteOne', function (next) {
   mongoose
     .model('Products')
     .updateMany({ ownerId, categoryId }, { $unset: { categoryId: '' } })
-    .then((response) => {
-      console.log(response)
+    .then(() => {
       next()
     })
     .catch((error) => {

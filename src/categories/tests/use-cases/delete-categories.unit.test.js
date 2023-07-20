@@ -5,8 +5,12 @@ import { CategoriesMock } from '../mocks/categories.mock.js'
 import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
 
 import { CategoriesDatabase } from '../../infra/index.js'
+import { ProductsDatabase } from '../../../products/infra/index.js'
 
 describe('Use Cases -> Delete Categories', () => {
+  beforeAll(() => {
+    new ProductsDatabase()
+  })
   it('Should be able delete category', async () => {
     const categoriesMock = await CategoriesMock.create().persist()
 

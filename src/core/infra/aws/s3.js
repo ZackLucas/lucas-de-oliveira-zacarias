@@ -3,10 +3,6 @@ import AWS from 'aws-sdk'
 AWS.config.update({ region: 'us-east-2' })
 
 export class S3ServiceAWS {
-  constructor() {
-    this.sqs = new AWS.SQS()
-  }
-
   async uploadFile(params) {
     const s3 = new AWS.S3({ region: process.env.AWS_REGION })
 
