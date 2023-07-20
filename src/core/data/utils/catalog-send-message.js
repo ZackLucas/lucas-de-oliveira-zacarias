@@ -1,3 +1,4 @@
+import { logger } from '../../domain/index.js'
 import { SQSServiceAWS } from '../../infra/index.js'
 
 export class SendCatalogMessage {
@@ -11,7 +12,7 @@ export class SendCatalogMessage {
 
       return result
     } catch (error) {
-      console.error(error)
+      logger.error(error)
     }
   }
 }

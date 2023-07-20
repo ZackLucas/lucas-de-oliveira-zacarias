@@ -1,3 +1,4 @@
+import { logger } from '../../domain/index.js'
 import { SQSServiceAWS } from '../../infra/index.js'
 
 export class ReceiveCatalogMessage {
@@ -7,7 +8,7 @@ export class ReceiveCatalogMessage {
 
       return await sqsServiceAWS.receiveMessage({ AttributeNames: ['All'], WaitTimeSeconds: 0 })
     } catch (error) {
-      console.error(error)
+      logger.error(error)
     }
   }
 

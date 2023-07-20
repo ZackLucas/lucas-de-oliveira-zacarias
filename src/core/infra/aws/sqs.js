@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk'
+import { logger } from '../../domain/index.js'
 
 AWS.config.update({ region: 'us-east-2' })
 
@@ -26,9 +27,9 @@ export class SQSServiceAWS {
             },
             (error) => {
               if (error) {
-                console.error(error)
+                logger.error(error)
               } else {
-                console.log('Deletado com sucesso')
+                logger.info('Mensagem Deletada')
               }
             },
           )
@@ -37,7 +38,7 @@ export class SQSServiceAWS {
 
       return response
     } catch (error) {
-      console.error(error)
+      logger.error(error)
     }
   }
 }
