@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --run-in-band --detectOpenHandles",
     "start:dev": "nodemon src/server.js",
-    "start": "node src/server.js",
+    "start": "node src/swagger.js && node src/server.js",
+    "documentation": "node src/swagger.js",
     "test:coverage": "jest --run-in-band --coverage --collectCoverageFrom='./src/**'",
     "lint:fix": "eslint --fix --ext .js src/"
   },
@@ -22,7 +23,9 @@
     "helmet": "^7.0.0",
     "mongodb": "^5.7.0",
     "mongoose": "^7.3.4",
-    "node-cron": "^3.0.2"
+    "node-cron": "^3.0.2",
+    "swagger-ui-express": "^5.0.0",
+    "swagger-autogen": "^2.23.5"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
