@@ -3,6 +3,12 @@ import { BadRequestError } from '../../../../core/domain/index.js'
 import { Categories } from './models/categories.model.js'
 
 export class CategoriesDatabase {
+  async findAllByOwnerId(ownerId) {
+    const user = await Categories.find({ ownerId })
+
+    return user
+  }
+
   async findOneById(ownerId, categoryId) {
     const user = await Categories.findOne({ ownerId, _id: categoryId })
 

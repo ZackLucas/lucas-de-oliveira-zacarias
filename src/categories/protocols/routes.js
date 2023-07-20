@@ -4,6 +4,11 @@ import CategoriesController from './controller.js'
 const routes = express.Router()
 const controller = new CategoriesController()
 
+routes.get('/:ownerId', controller.findCategories, () => {
+  /*
+    #swagger.tags = ["Categories"]
+  */
+})
 routes.post('/:ownerId', controller.createCategories, () => {
   /*
     #swagger.tags = ["Categories"]

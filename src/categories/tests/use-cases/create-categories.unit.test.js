@@ -2,10 +2,8 @@ import { CreateCategories } from '../../data/index.js'
 
 import { CategoriesMock } from '../mocks/categories.mock.js'
 
-import { ValidationError } from '../../../core/domain/errors/validation.error.js'
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
-
 import { Categories } from '../../infra/index.js'
+import { BadRequestError, ValidationError } from '../../../core/domain/index.js'
 
 describe('Use Cases -> Create Categories', () => {
   it('Should be able create category and return data', async () => {

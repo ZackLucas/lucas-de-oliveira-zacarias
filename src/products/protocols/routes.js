@@ -4,6 +4,12 @@ import ProductsController from './controller.js'
 const routes = express.Router()
 const controller = new ProductsController()
 
+routes.get('/:ownerId', controller.findProducts, () => {
+  /*
+    #swagger.tags = ["Products"]
+  */
+})
+
 routes.post('/:ownerId', controller.createProducts, () => {
   /*
     #swagger.tags = ["Products"]
@@ -19,6 +25,7 @@ routes.post('/:ownerId', controller.createProducts, () => {
     }
   */
 })
+
 routes.put('/:ownerId/:productId', controller.updateProducts, () => {
   /*
     #swagger.tags = ["Products"]
@@ -35,6 +42,7 @@ routes.put('/:ownerId/:productId', controller.updateProducts, () => {
     }
   */
 })
+
 routes.delete('/:ownerId/:productId', controller.deleteProducts, () => {
   /*
     #swagger.tags = ["Products"]

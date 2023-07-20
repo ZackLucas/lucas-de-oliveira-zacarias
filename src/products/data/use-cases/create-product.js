@@ -14,7 +14,7 @@ export class CreateProducts {
     const productsDatabase = new ProductsDatabase()
     const product = await productsDatabase.create(ownerId, payload)
 
-    if (!product) throw new BadRequestError(null, 'category not registered.')
+    if (!product) throw new BadRequestError(null, 'Product not registered.')
 
     return product
   }

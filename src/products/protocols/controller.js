@@ -1,8 +1,24 @@
-import { CreateProducts, UpdateProducts, DeleteProducts } from '../data/index.js'
+import { CreateProducts, UpdateProducts, DeleteProducts, FindProducts } from '../data/index.js'
 
 import { SendCatalogMessage } from '../../core/data/index.js'
 
 export default class ProductsController {
+  async findProducts(req, res) {
+    try {
+      const { ownerId } = req.params
+      const useCase = new FindProducts()
+
+      const response = await useCase.execute(ownerId)
+
+      return res.json({ data: response })
+    } catch (error) {
+      const message = error.message || 'Error'
+      const status = error.status || 400
+
+      res.status(status || 400).send({ message, status })
+    }
+  }
+
   async createProducts(req, res) {
     try {
       const { ownerId } = req.params

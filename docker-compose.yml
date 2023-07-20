@@ -15,7 +15,7 @@ services:
       - mongo
     depends_on:
       - mongo
-    command: npm start:dev
+    command: npm start
 
   mongo:
     container_name: "mongo"

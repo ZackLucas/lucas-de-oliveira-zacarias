@@ -2,11 +2,9 @@ import { UpdateCategories } from '../../data/index.js'
 
 import { CategoriesMock } from '../mocks/categories.mock.js'
 
-import { ValidationError } from '../../../core/domain/errors/validation.error.js'
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
-
 import { Categories } from '../../infra/index.js'
 import { ObjectId } from 'mongodb'
+import { BadRequestError, ValidationError } from '../../../core/domain/index.js'
 
 describe('Use Cases -> Update Categories', () => {
   it('Should be able update a category', async () => {
