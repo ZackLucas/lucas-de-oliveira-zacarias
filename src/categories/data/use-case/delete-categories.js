@@ -1,6 +1,5 @@
+import { BadRequestError } from '../../../core/domain/index.js'
 import { CategoriesDatabase } from '../../infra/index.js'
-
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
 
 export class DeleteCategories {
   async execute(ownerId, categoryId) {

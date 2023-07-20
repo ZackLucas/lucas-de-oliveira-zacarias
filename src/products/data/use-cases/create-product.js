@@ -1,9 +1,8 @@
 import { ProductsDatabase } from '../../infra/index.js'
 
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
-import { ValidationError } from '../../../core/domain/errors/validation.error.js'
 import { ObjectId } from 'mongodb'
 import { verifyCategory } from '../utils/verify-category.js'
+import { BadRequestError, InvalidParamError, RequiredParamError } from '../../../core/domain/index.js'
 
 export class CreateProducts {
   async execute(ownerId, payload) {
@@ -20,10 +19,10 @@ export class CreateProducts {
   }
 
   validateEntries(ownerId, { title, price, categoryId }) {
-    if (!ownerId) throw new ValidationError(null, 'ownerId is required.')
-    if (!title) throw new ValidationError(null, 'title is required.')
-    if (!price) throw new ValidationError(null, 'price is required.')
+    if (!ownerId) throw new RequiredParamError('ownerId')
+    if (!title) throw new RequiredParamError('title')
+    if (!price) throw new RequiredParamError('price')
 
-    if (!!categoryId && !ObjectId.isValid(categoryId)) throw new ValidationError(null, 'categoryId is not valid.')
+    if (!!categoryId && !ObjectId.isValid(categoryId)) throw new InvalidParamError('categoryId')
   }
 }
