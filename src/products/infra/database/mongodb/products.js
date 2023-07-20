@@ -1,4 +1,5 @@
 import { BadRequestError } from '../../../../core/domain/index.js'
+
 import { Products } from './index.js'
 
 export class ProductsDatabase {

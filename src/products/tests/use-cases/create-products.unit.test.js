@@ -1,13 +1,11 @@
-import { CreateProducts } from '../../data/index.js'
+import { ObjectId } from 'mongodb'
 
-import { ProductsMock } from '../mocks/products.mock.js'
+import { BadRequestError, ValidationError } from '../../../core/domain/index.js'
 import { CategoriesMock } from '../../../categories/tests/mocks/categories.mock.js'
 
-import { ValidationError } from '../../../core/domain/errors/validation.error.js'
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
-
+import { CreateProducts } from '../../data/index.js'
 import { Products } from '../../infra/index.js'
-import { ObjectId } from 'mongodb'
+import { ProductsMock } from '../mocks/products.mock.js'
 
 describe('Use Cases -> Create Products', () => {
   it('Should be able create product and return data', async () => {

@@ -1,6 +1,6 @@
-import { Categories } from './models/categories.model.js'
-
 import { BadRequestError } from '../../../../core/domain/index.js'
+
+import { Categories } from './models/categories.model.js'
 
 export class CategoriesDatabase {
   async findOneById(ownerId, categoryId) {

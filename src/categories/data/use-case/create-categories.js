@@ -1,6 +1,6 @@
-import { CategoriesDatabase } from '../../infra/index.js'
-
 import { BadRequestError, InvalidParamError } from '../../../core/domain/index.js'
+
+import { CategoriesDatabase } from '../../infra/index.js'
 
 export class CreateCategories {
   async execute(ownerId, title, description) {

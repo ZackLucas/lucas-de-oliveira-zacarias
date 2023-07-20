@@ -1,13 +1,12 @@
+import { ObjectId } from 'mongodb'
+
 import { DeleteProducts } from '../../data/index.js'
 
-import { ProductsMock } from '../mocks/products.mock.js'
+import { BadRequestError, ValidationError } from '../../../core/domain/index.js'
 import { CategoriesMock } from '../../../categories/tests/mocks/categories.mock.js'
 
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
-
 import { ProductsDatabase, Products } from '../../infra/index.js'
-import { ObjectId } from 'mongodb'
-import { ValidationError } from '../../../core/domain/errors/validation.error.js'
+import { ProductsMock } from '../mocks/products.mock.js'
 
 describe('Use Cases -> Delete Products', () => {
   it('Should be able delete category', async () => {

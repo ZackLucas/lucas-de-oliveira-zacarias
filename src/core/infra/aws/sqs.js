@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk'
+
 import { logger } from '../../domain/index.js'
 
 AWS.config.update({ region: 'us-east-2' })

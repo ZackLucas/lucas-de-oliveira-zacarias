@@ -1,7 +1,8 @@
-import { ProductsDatabase } from '../../infra/index.js'
-
 import { ObjectId } from 'mongodb'
+
 import { BadRequestError, RequiredParamError } from '../../../core/domain/index.js'
+
+import { ProductsDatabase } from '../../infra/index.js'
 
 export class DeleteProducts {
   async execute(ownerId, productId) {

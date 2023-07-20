@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
+
 import { logger } from '../../../../../core/domain/index.js'
+
 const Schema = mongoose.Schema
 
 const CategoriesSchema = new Schema(
