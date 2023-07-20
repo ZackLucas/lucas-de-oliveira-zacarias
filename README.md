@@ -10,10 +10,12 @@ Aplication test
 
 - If docker is used to launch the application, it will also use mongodb instantiated in docker. If you choose default startup, mongodb will be used on atlas clusters.
 
-## Installation
+## Installation And Config
 
 ```bash
 $ npm install
+
+-> Copie o .env para a raiz do projeto
 ```
 
 ## Running the app
