@@ -1,12 +1,25 @@
-# Use root/example as user/password credentials
-version: '3.9'
+version: "3.8"
 
 services:
-  mongo:
-    image: mongo
+  app:
+    container_name: "app"
     restart: always
+    build: .
+    environment:
+      - MONGODB_URI=mongodb://mongo/teste
+      - APP_SERVER_PORT=3000
+      - NODE_ENV=developer
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    command: npm start
+
+  mongo:
+    container_name: "mongo"
+    image: mongo
     ports:
       - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+    command: mongod --logpath=/dev/null # --quiet

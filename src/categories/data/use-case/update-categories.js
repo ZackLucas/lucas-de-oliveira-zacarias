@@ -1,7 +1,6 @@
 import { CategoriesDatabase } from '../../infra/index.js'
 
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
-import { ValidationError } from '../../../core/domain/errors/validation.error.js'
+import { BadRequestError, ValidationError } from '../../../core/domain/index.js'
 
 export class UpdateCategories {
   async execute(ownerId, categoryId, title, description) {
@@ -16,6 +15,6 @@ export class UpdateCategories {
   }
 
   validateEntries(title, description) {
-    if (!title && !description) throw new ValidationError(null, 'Nothing to update.')
+    if (!title && !description) throw new ValidationError(['title', 'description'], 'Nothing to update.')
   }
 }

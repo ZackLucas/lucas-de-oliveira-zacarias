@@ -1,7 +1,6 @@
 import { CategoriesDatabase } from '../../infra/index.js'
 
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
-import { ValidationError } from '../../../core/domain/errors/validation.error.js'
+import { BadRequestError, InvalidParamError } from '../../../core/domain/index.js'
 
 export class CreateCategories {
   async execute(ownerId, title, description) {
@@ -16,7 +15,7 @@ export class CreateCategories {
   }
 
   validateEntries(title, ownerId) {
-    if (!title) throw new ValidationError(null, 'title is required.')
-    if (!ownerId) throw new ValidationError(null, 'ownerId is required.')
+    if (!title) throw new InvalidParamError('title')
+    if (!ownerId) throw new InvalidParamError('ownerId')
   }
 }

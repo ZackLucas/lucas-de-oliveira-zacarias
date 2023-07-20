@@ -1,5 +1,5 @@
 import { CategoriesDatabase } from '../../../categories/infra/index.js'
-import { BadRequestError } from '../../../core/domain/errors/bad-request-error.js'
+import { BadRequestError } from '../../../core/domain/index.js'
 
 export const verifyCategory = async (ownerId, categoryId) => {
   const categoriesDatabase = new CategoriesDatabase()

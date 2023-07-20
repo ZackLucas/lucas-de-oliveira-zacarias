@@ -16,10 +16,14 @@ export const configureApp = async () => {
   app.use(urlencoded({ extended: true, limit: '2mb' }))
 
   // Mongoose Config
-  const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DATABASE_NAME } = process.env
-  const uri = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_URL}/${MONGODB_DATABASE_NAME}`
+  if (process.env.NODE_ENV === 'developer') {
+    mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  } else {
+    const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DATABASE_NAME } = process.env
+    const uri = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_URL}/${MONGODB_DATABASE_NAME}`
 
-  mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  }
 
   // Catalog module initialize
   await CatalogModule.initialize()
