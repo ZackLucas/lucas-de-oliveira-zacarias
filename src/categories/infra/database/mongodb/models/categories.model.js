@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-const categoriesSchema = new Schema(
+const CategoriesSchema = new Schema(
   {
     title: { type: String, required: true },
     ownerId: { type: String, required: true },
@@ -14,6 +14,22 @@ const categoriesSchema = new Schema(
   },
 )
 
-categoriesSchema.index({ title: 1, ownerId: 1 }, { unique: true })
+CategoriesSchema.pre('deleteOne', function (next) {
+  const categoryId = this.getQuery()['_id']
+  const ownerId = this.getQuery()['ownerId']
 
-export const Categories = mongoose.model('Categories', categoriesSchema)
+  mongoose
+    .model('Products')
+    .updateMany({ ownerId, categoryId }, { $unset: { categoryId: '' } })
+    .then((response) => {
+      console.log(response)
+      next()
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+})
+
+CategoriesSchema.index({ title: 1, ownerId: 1 }, { unique: true })
+
+export const Categories = mongoose.model('Categories', CategoriesSchema)

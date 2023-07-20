@@ -8,6 +8,10 @@ export class ProductsDatabase {
     return user
   }
 
+  async findByCategoryId(categoryId) {
+    return await Products.find({ categoryId }).lean()
+  }
+
   async create(ownerId, payload) {
     try {
       const user = await Products.create({ ownerId, ...payload })

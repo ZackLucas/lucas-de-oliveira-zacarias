@@ -29,6 +29,8 @@ export default class CategoriesController {
 
       const response = await useCase.execute(ownerId, categoryId, title, description)
 
+      await new SendCatalogMessage().execute(ownerId)
+
       return res.json({ data: response })
     } catch (error) {
       const message = error.message || 'Error'
@@ -44,6 +46,8 @@ export default class CategoriesController {
       const useCase = new DeleteCategories()
 
       const response = await useCase.execute(ownerId, categoryId)
+
+      await new SendCatalogMessage().execute(ownerId)
 
       return res.json({ data: response })
     } catch (error) {
